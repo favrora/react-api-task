@@ -13,9 +13,7 @@ function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    console.log("fetch all");
     dispatch(fetchAllPersonages());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
