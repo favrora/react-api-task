@@ -24,7 +24,7 @@ interface IProps {
   onFavorite: (name: string) => void;
   onClick: (v: string) => void;
   onPageChange: (_: any, newPage: number) => void;
-  onRowsPerPageChange: (event: any) => void;
+  onRowsPerPageChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const useStyles = makeStyles({

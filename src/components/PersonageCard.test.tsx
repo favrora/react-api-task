@@ -42,7 +42,7 @@ describe("Given i want to render the personage table", function () {
     );
 
     expect(screen.getByText("Rick Sanchez")).toBeInTheDocument();
-    expect(screen.getByText("star_outline")).toBeInTheDocument();
+    expect(screen.getByText("favorite")).toBeInTheDocument();
   });
 
   it("should call the onFavorite on icon click", function () {
@@ -68,7 +68,7 @@ describe("Given i want to render the personage table", function () {
       />
     );
 
-    fireEvent.click(screen.getByText("star_outline"));
+    fireEvent.click(screen.getByText("favorite_border"));
 
     expect(onFavorite).toHaveBeenCalledTimes(1);
   });

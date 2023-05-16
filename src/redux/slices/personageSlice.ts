@@ -44,7 +44,7 @@ export const fetchAllPersonages = createAsyncThunk(
 
 export const fetchPersonage = createAsyncThunk(
   "personage/fetch",
-  async (personageId: string, _) => {
+  async (personageId: string) => {
     const personageReq = await fetch(`${ApiBaseUrl}/character/${personageId}`);
     return await personageReq.json();
   }
@@ -100,7 +100,7 @@ export const personageSlice = createSlice({
         state.personages = action.payload;
       }
     );
-    builder.addCase(fetchPersonage.pending, (state, action) => {
+    builder.addCase(fetchPersonage.pending, (state) => {
       state.personage = {};
     });
     builder.addCase(fetchPersonage.fulfilled, (state, action) => {

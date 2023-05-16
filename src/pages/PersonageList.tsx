@@ -74,11 +74,14 @@ export default function PersonageList() {
     data = data.filter((p) => !favorite.includes(p.name));
   }
 
-  const onPageChange = (_: any, newPage: number) => {
+  const onPageChange = (
+    _: React.ChangeEvent<HTMLInputElement>,
+    newPage: number
+  ) => {
     dispatch(setPage(newPage));
   };
 
-  const onRowsPerPageChange = (event: any) => {
+  const onRowsPerPageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setItemsPerPage(parseInt(event.target.value, 10)));
     dispatch(setPage(0));
   };
