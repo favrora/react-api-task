@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "wouter";
+import debounce from "lodash.debounce";
 import {
   Container,
   Icon,
@@ -60,6 +61,7 @@ export default function PersonageList() {
   const isFetchingList = useAppSelector((p) => p.personage.isFetchingList);
   const search = useAppSelector((s) => s.personage.search);
   const favorite = useAppSelector((s) => s.personage.favoritePersonages);
+  const [debouncedData, setDebouncedData] = useState([]);
 
   let data =
     personages && search.length >= SEARCH_MODE_LENGTH
@@ -74,8 +76,30 @@ export default function PersonageList() {
     data = data.filter((p) => !favorite.includes(p.name));
   }
 
+  // Debounce for updating cards on input search text
+  useEffect(() => {
+    const debouncedMapData = debounce(() => {
+      const mappedData: any = data.map(
+        (personage) =>
+          ({
+            name: personage.name,
+            id: personage.id,
+            image: personage.image,
+            favorite: favorite.includes(personage.name),
+          } as ITableEntry)
+      );
+      setDebouncedData(mappedData);
+    }, 600);
+
+    debouncedMapData();
+
+    return () => {
+      debouncedMapData.cancel();
+    };
+  }, [data]);
+
   const onPageChange = (
-    _: React.ChangeEvent<HTMLInputElement>,
+    _: React.MouseEvent<HTMLButtonElement> | null,
     newPage: number
   ) => {
     dispatch(setPage(newPage));
@@ -127,15 +151,7 @@ export default function PersonageList() {
       </div>
       <PersonageCard
         searchMode={search.length >= SEARCH_MODE_LENGTH}
-        data={data.map(
-          (personage) =>
-            ({
-              name: personage.name,
-              id: personage.id,
-              image: personage.image,
-              favorite: favorite.includes(personage.name),
-            } as ITableEntry)
-        )}
+        data={debouncedData}
         onFavorite={(value) => dispatch(toggleFavoritePersonage(value))}
         onClick={(v) => {
           setLocation(`/${v}`);

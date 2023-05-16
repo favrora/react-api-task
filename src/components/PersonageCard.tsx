@@ -16,6 +16,8 @@ import { makeStyles } from "@mui/styles";
 import { ITableEntry } from "../models/interfaces";
 import FavoriteIcon from "./FavoriteIcon";
 
+type PageChangeEvent = React.MouseEvent<HTMLButtonElement> | null;
+
 interface IProps {
   data: ITableEntry[];
   rowsPerPage: number;
@@ -23,7 +25,7 @@ interface IProps {
   searchMode: boolean;
   onFavorite: (name: string) => void;
   onClick: (v: string) => void;
-  onPageChange: (_: any, newPage: number) => void;
+  onPageChange: (event: PageChangeEvent, newPage: number) => void;
   onRowsPerPageChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 

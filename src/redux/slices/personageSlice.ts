@@ -8,6 +8,27 @@ import {
   setFavoritePersonage,
 } from "../../utils/localStorageUtils";
 
+type Personage = {
+  id: number;
+  name: string;
+  status: "Alive" | "Dead" | "Unknown";
+  species: string;
+  type: string;
+  gender: "Male" | "Female" | "Genderless" | "Unknown";
+  origin: {
+    name: string;
+    url: string;
+  };
+  location: {
+    name: string;
+    url: string;
+  };
+  image: string;
+  episode: string[];
+  url: string;
+  created: string;
+};
+
 interface PersonageState {
   isFetchingList: boolean;
   isFetchingPersonage: boolean;
@@ -15,7 +36,7 @@ interface PersonageState {
   search: string;
   favoritePersonages: string[];
   filter: "all" | "favorite" | "remaining";
-  personage: any;
+  personage: Personage | Record<string, never>;
   page: number;
   itemsPerPage: number;
 }

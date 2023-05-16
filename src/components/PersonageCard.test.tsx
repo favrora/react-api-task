@@ -42,7 +42,7 @@ describe("Given i want to render the personage table", function () {
     );
 
     expect(screen.getByText("Rick Sanchez")).toBeInTheDocument();
-    expect(screen.getByText("favorite")).toBeInTheDocument();
+    expect(screen.getByText("favorite_border")).toBeInTheDocument();
   });
 
   it("should call the onFavorite on icon click", function () {
@@ -78,19 +78,19 @@ describe("Given i want to render the personage table", function () {
       <PersonageCard
         data={[
           {
-            name: "test1",
+            name: "User 1",
             id: "1",
             image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
             favorite: true,
           },
           {
-            name: "test2",
+            name: "User 2",
             id: "2",
             image: "https://rickandmortyapi.com/api/character/avatar/2.jpeg",
             favorite: true,
           },
           {
-            name: "test3",
+            name: "User 3",
             id: "3",
             image: "https://rickandmortyapi.com/api/character/avatar/3.jpeg",
             favorite: true,
@@ -106,6 +106,8 @@ describe("Given i want to render the personage table", function () {
       />
     );
 
-    expect(screen.getByText("Rows per page:")).toBeInTheDocument();
+    expect(screen.getByText("User 1")).toBeInTheDocument();
+    expect(screen.getByText("User 2")).toBeInTheDocument();
+    expect(screen.getByText("User 3")).toBeInTheDocument();
   });
 });
