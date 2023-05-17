@@ -56,7 +56,6 @@ export const initialState: PersonageState = {
 export const fetchAllPersonages = createAsyncThunk(
   "personage/fetchAll",
   async () => {
-    console.log(RequestedPersonages);
     const response = await fetch(
       `${ApiBaseUrl}/character/${RequestedPersonages}`
     );

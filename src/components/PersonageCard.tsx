@@ -83,7 +83,7 @@ export default function PersonageCard(props: IProps) {
           xs={6}
           md={4}
           lg={3}
-          key={card.name}
+          key={card.id}
           onClick={() => props.onClick(card.id)}
         >
           <div className={classes.box}>

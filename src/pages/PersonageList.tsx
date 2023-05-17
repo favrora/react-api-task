@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useLocation } from "wouter";
 import debounce from "lodash.debounce";
 import {
@@ -76,18 +76,15 @@ export default function PersonageList() {
     data = data.filter((p) => !favorite.includes(p.name));
   }
 
-  // Debounce for updating cards on input search text
+  // Debounce for updating cards on input search text or filter change
   useEffect(() => {
     const debouncedMapData = debounce(() => {
-      const mappedData: any = data.map(
-        (personage) =>
-          ({
-            name: personage.name,
-            id: personage.id,
-            image: personage.image,
-            favorite: favorite.includes(personage.name),
-          } as ITableEntry)
-      );
+      const mappedData: any = data.map((personage) => ({
+        name: personage.name,
+        id: personage.id,
+        image: personage.image,
+        favorite: favorite.includes(personage.name),
+      }));
       setDebouncedData(mappedData);
     }, 600);
 
@@ -96,7 +93,7 @@ export default function PersonageList() {
     return () => {
       debouncedMapData.cancel();
     };
-  }, [data]);
+  }, [search, filter, personages]);
 
   const onPageChange = (
     _: React.MouseEvent<HTMLButtonElement> | null,
