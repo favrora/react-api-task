@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { IListEntry } from "../../models/interfaces";
-import { ApiBaseUrl } from "../../models/constants";
+import { ApiBaseUrl, RequestedPersonages } from "../../models/constants";
 
 import {
   getFavoritePersonage,
@@ -56,10 +56,13 @@ export const initialState: PersonageState = {
 export const fetchAllPersonages = createAsyncThunk(
   "personage/fetchAll",
   async () => {
-    const response = await fetch(`${ApiBaseUrl}/character`);
-    const jsonResponse = await response.json();
+    console.log(RequestedPersonages);
+    const response = await fetch(
+      `${ApiBaseUrl}/character/${RequestedPersonages}`
+    );
 
-    return jsonResponse.results;
+    const jsonResponse = await response.json();
+    return jsonResponse;
   }
 );
 
