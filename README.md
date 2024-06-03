@@ -10,7 +10,7 @@ Optimization:
 
 Functionality: `Cards, pagination, search, filtering, card page, adding to wishlist`
 
-##Preview
+## Preview
 
 <img src="./preview.jpg" width="100%">
 
