@@ -1,20 +1,20 @@
 # Faraway test task
 
-Стэк: `Typescript, React, Redux, Material UI, Jest, ESLint`
+Tech Stack: `Typescript, React, Redux, Material UI, Jest, ESLint`
 
-Оптимизация:
+Optimization:
 
-- debounce с 600ms при вводе текста в строку поиска или смены фильтра, отменяет вызов если быстро вводить буквы в строку поиска
-- 1 запрос для 80 карточек и локальная пагинация
-- Jest тесты и Linter
+- debounce with 600ms when entering text into the search bar or changing a filter, cancels the call if you quickly enter letters into the search bar
+- 1 request for 80 cards and local pagination
+- Jest tests and Linter
 
-Функционал: `Карточки, пагинация, поиск, фильтрация, страница карточки, добавление в wishlist`
+Functionality: `Cards, pagination, search, filtering, card page, adding to wishlist`
 
-## Preview
+##Preview
 
 <img src="./preview.jpg" width="100%">
 
-> Реализовал используя открытое [API The Rick and Morty](https://rickandmortyapi.com/)
+> Implemented using open source [API The Rick and Morty](https://rickandmortyapi.com/)
 
 ### Installation
 
